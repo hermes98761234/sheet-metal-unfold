@@ -1,0 +1,133 @@
+import type { Lang } from './lib/model'
+
+export type T = (s: string, ...args: (string | number)[]) => string
+
+/** Marks a string for translation where it is defined away from its t() call. */
+export const N = (s: string) => s
+
+/** English source string → Ukrainian. `{0}`, `{1}` are placeholders for interpolated values. */
+export const UK: Record<string, string> = {
+  'Sheet metal unfold': 'Розгортка листового металу',
+  'Bend allowance, flat pattern, DXF and press-brake die.': 'Припуск на гин, розгортка, DXF і матриця листогина.',
+  'Estimates from standard formulas. Confirm with a test bend before cutting production parts.':
+    'Оцінка за стандартними формулами. Перед серійним різанням перевірте пробним гином.',
+  'Source on GitHub': 'Код на GitHub',
+  Units: 'Одиниці',
+  Millimetres: 'Міліметри',
+  Inches: 'Дюйми',
+  Language: 'Мова',
+  Theme: 'Тема',
+  System: 'Системна',
+  Light: 'Світла',
+  Dark: 'Темна',
+  Sheet: 'Лист',
+  Material: 'Матеріал',
+  Thickness: 'Товщина',
+  'Inside radius': 'Внутрішній радіус',
+  'Part width': 'Ширина деталі',
+  'Set radius to the minimum for this material': 'Встановити мінімальний радіус для матеріалу',
+  'K-factor': 'K-фактор',
+  Source: 'Джерело',
+  'Table (air bending)': 'Таблиця (вільне гнуття)',
+  Manual: 'Вручну',
+  'K locates the neutral line: 0.33 for tight bends up to 0.5 for large radii. It varies by shop and tooling, so calibrate with a test bend if accuracy matters.':
+    'K визначає положення нейтральної лінії: від 0,33 для малих радіусів до 0,5 для великих. Залежить від виробництва й оснащення, тож для точності відкалібруйте пробним гином.',
+  Dimensions: 'Розміри',
+  'Dimensions are': 'Розміри задано',
+  'Outside (to the outer virtual sharp)': 'Зовнішні (до зовнішнього віртуального кута)',
+  'Inside (to the inner virtual sharp)': 'Внутрішні (до внутрішнього віртуального кута)',
+  'Straight (tangent to tangent)': 'Прямі ділянки (від дотичної до дотичної)',
+  Reset: 'Скинути',
+  Result: 'Результат',
+  'Fix the highlighted fields.': 'Виправте підсвічені поля.',
+  'Flat pattern length: {0}': 'Довжина розгортки: {0}',
+  'Flat blank': 'Заготовка',
+  'Sum of entered flanges': 'Сума введених полиць',
+  'Total bend deduction': 'Загальне віднімання на гини',
+  'Straight lengths': 'Прямі ділянки',
+  'Blank mass': 'Маса заготовки',
+  lb: 'фунтів',
+  kg: 'кг',
+  'Flange {0} is too short for its bends: its straight part would be negative.':
+    'Полиця {0} надто коротка для своїх гинів: пряма ділянка вийшла б від’ємною.',
+  'The radius is below the typical minimum for {0} ({1}); the outside may crack.':
+    'Радіус менший за типовий мінімум для матеріалу «{0}» ({1}); зовнішній бік може тріснути.',
+  'Formed profile': 'Профіль після гнуття',
+  'Flat pattern': 'Розгортка',
+  'Cross-section of the formed part': 'Переріз гнутої деталі',
+  'T = {0} {1}': 'Т = {0} {1}',
+  'B{0}': 'Г{0}',
+  '{0} × {1} {2}': '{0} × {1} {2}',
+  'Download DXF': 'Завантажити DXF',
+  'Millimetres; layers CUT, BEND (dashed) and BEND_NOTES.': 'Міліметри; шари CUT, BEND (штрихова) і BEND_NOTES.',
+  Bends: 'Гини',
+  Bend: 'Гин',
+  Angle: 'Кут',
+  Allowance: 'Припуск',
+  Deduction: 'Віднімання',
+  Setback: 'Відступ',
+  'Line at': 'Лінія гину на',
+  'No bends: the flat pattern is the flange itself.': 'Гинів немає: розгортка дорівнює самій полиці.',
+  'K-factor {0}. Allowance is the neutral-line arc; deduction = 2 × setback − allowance.':
+    'K-фактор {0}. Припуск — довжина дуги нейтральної лінії; віднімання = 2 × відступ − припуск.',
+  'Press-brake V-die': 'V-матриця листогина',
+  'Use a V-die of about {0} {1}': 'Візьміть V-матрицю приблизно {0} {1}',
+  'Rule of thumb': 'Практичне правило',
+  '{0} × thickness = {1} {2}': '{0} × товщина = {1} {2}',
+  'Other standard openings': 'Інші стандартні розкриви',
+  'Minimum flange': 'Мінімальна полиця',
+  'Radius this die forms': 'Радіус, який дає ця матриця',
+  'Bending force': 'Зусилля гнуття',
+  'kN/m': 'кН/м',
+  t: 'т',
+  'for {0} {1}': 'для {0} {1}',
+  'Your inside radius differs from what this die forms. For R = {0} {1} an air-bend die of about V {2} {1} fits better.':
+    'Ваш внутрішній радіус відрізняється від того, що дає ця матриця. Для R = {0} {1} краще підійде матриця приблизно V {2} {1}.',
+  'The shortest flange ({0} {1}) is below the die minimum; use a narrower die or expect a poor bend.':
+    'Найкоротша полиця ({0} {1}) менша за мінімум матриці; візьміть вужчу матрицю або чекайте неякісного гину.',
+  'Air bending, 90°, rules of thumb. Check your press brake chart.': 'Вільне гнуття, 90°, практичні правила. Звіртеся з таблицею вашого листогина.',
+  'Find K-factor from a test bend': 'Знайти K-фактор за пробним гином',
+  'Bend a scrap piece, measure its two outside flanges and the flat length before bending. Uses the thickness and radius on the left.':
+    'Зігніть обрізок, виміряйте дві зовнішні полиці та довжину розгортки до гнуття. Використовує товщину й радіус ліворуч.',
+  'Outside flange A': 'Зовнішня полиця A',
+  'Outside flange B': 'Зовнішня полиця B',
+  'Measured flat length': 'Виміряна довжина розгортки',
+  'Bend angle': 'Кут гину',
+  'K = {0}': 'K = {0}',
+  'No valid K from these numbers.': 'З цих чисел K не отримати.',
+  'Use this K': 'Використати цей K',
+  'Flange profile': 'Профіль полиць',
+  Preset: 'Шаблон',
+  'Load a preset…': 'Завантажити шаблон…',
+  Reverse: 'Розвернути',
+  'Flange lengths are measured the way the "Dimensions are" setting says. Each bend turns the sheet by its angle.':
+    'Довжини полиць вимірюються так, як задано в полі «Розміри задано». Кожен гин повертає лист на свій кут.',
+  'Bend {0} angle': 'Кут гину {0}',
+  Direction: 'Напрям',
+  Up: 'Вгору',
+  Down: 'Вниз',
+  'Up to {0}°. Hems and 180° folds need a separate allowance.': 'До {0}°. Для підгинів і складок 180° потрібен окремий припуск.',
+  'Flange {0} length': 'Довжина полиці {0}',
+  'Remove flange {0}': 'Видалити полицю {0}',
+  Remove: 'Видалити',
+  'Add bend and flange': 'Додати гин і полицю',
+  // Names from data tables
+  'Mild steel': 'Маловуглецева сталь',
+  'Stainless steel 304': 'Нержавіюча сталь 304',
+  'Spring steel': 'Пружинна сталь',
+  'Aluminium 5052-H32': 'Алюміній 5052-H32',
+  'Aluminium 6061-T6': 'Алюміній 6061-T6',
+  Copper: 'Мідь',
+  Brass: 'Латунь',
+  'L bracket': 'Кутник (L)',
+  'U channel': 'U-профіль',
+  'Z bracket': 'Z-профіль',
+  'Hat channel': 'Омега-профіль',
+  'C channel with lips': 'C-профіль з відгинами',
+  '45° offset': 'Зміщення 45°',
+}
+
+export function tr(lang: Lang, s: string, ...args: (string | number)[]): string {
+  const src = lang === 'uk' ? (UK[s] ?? s) : s
+  return src.replace(/\{(\d+)\}/g, (_, i: string) => String(args[+i]))
+}
